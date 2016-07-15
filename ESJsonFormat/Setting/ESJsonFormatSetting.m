@@ -14,6 +14,12 @@ NSString *const kESJsonFormatOutputToFiles = @"com.EnjoySR.ESJsonFormat.OutputTo
 NSString *const kESJsonFormatImpObjClassInArray = @"com.EnjoySR.ESJsonFormat.ImpObjClassInArray";
 NSString *const kESJsonFormatUppercaseKeyWordForId = @"com.EnjoySR.ESJsonFormat.UppercaseKeyWordForId";
 
+/**
+ *  加入修改父类
+ */
+NSString *const kESJsonFormatSuperClassName_QM = @"com.EnjoySR.ESJsonFormat.SuperClassName_QM";
+
+
 @implementation ESJsonFormatSetting
 
 + (ESJsonFormatSetting *)defaultSetting
@@ -25,8 +31,9 @@ NSString *const kESJsonFormatUppercaseKeyWordForId = @"com.EnjoySR.ESJsonFormat.
         NSDictionary *defaults = @{kESJsonFormatGeneric: @YES,
                                    kESJsonFormatOutputToFiles: @NO,
                                    kESJsonFormatImpObjClassInArray: @YES,
-                                   kESJsonFormatUppercaseKeyWordForId: @NO};
-                  [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+                                   kESJsonFormatUppercaseKeyWordForId: @NO,
+                                   kESJsonFormatSuperClassName_QM : @"NSObject"};
+        [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     });
     return defaultSetting;
 }
@@ -66,5 +73,17 @@ NSString *const kESJsonFormatUppercaseKeyWordForId = @"com.EnjoySR.ESJsonFormat.
 - (BOOL)uppercaseKeyWordForId{
     return [[NSUserDefaults standardUserDefaults] boolForKey:kESJsonFormatUppercaseKeyWordForId];
 }
+
+
+- (void)setSuperClassName_QM:(NSString *)superClassName_QM{
+    [[NSUserDefaults standardUserDefaults] setObject:superClassName_QM forKey:kESJsonFormatSuperClassName_QM];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)superClassName_QM{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kESJsonFormatSuperClassName_QM];
+}
+
+
 
 @end

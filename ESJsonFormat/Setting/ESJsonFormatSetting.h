@@ -16,5 +16,7 @@
 @property BOOL impOjbClassInArray;
 @property BOOL outputToFiles;
 @property BOOL uppercaseKeyWordForId;
+@property (nonatomic, copy) NSString * superClassName_QM;
+
 
 @end

@@ -195,7 +195,7 @@
  *  @return
  */
 + (NSString *)parseClassHeaderContentForOjbcWithClassInfo:(ESClassInfo *)classInfo{
-    NSMutableString *result = [NSMutableString stringWithFormat:@"@interface %@ : NSObject\n",classInfo.className];
+    NSMutableString *result = [NSMutableString stringWithFormat:@"@interface %@ : %@\n",classInfo.className,[ESJsonFormatSetting defaultSetting].superClassName_QM];
     [result appendString:classInfo.propertyContent];
     [result appendString:@"\n@end"];
     

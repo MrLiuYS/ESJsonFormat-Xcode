@@ -15,6 +15,12 @@
 @property (weak) IBOutlet NSButton *btnOutputToFile;
 @property (weak) IBOutlet NSButton *btnUpercaseForId;
 
+@property (weak) IBOutlet NSTextField *tfSuperClassName_QM;
+
+@property (weak) IBOutlet NSTextField *labelSuperClassName_QM;
+
+
+
 @end
 
 @implementation ESSettingController
@@ -27,6 +33,10 @@
     self.btnGeneric.state = (NSCellStateValue)[[ESJsonFormatSetting defaultSetting] useGeneric];
     self.btnOutputToFile.state = (NSCellStateValue)[[ESJsonFormatSetting defaultSetting] outputToFiles];
     self.btnUpercaseForId.state = (NSCellStateValue)[[ESJsonFormatSetting defaultSetting] uppercaseKeyWordForId];
+    
+    [self.tfSuperClassName_QM setStringValue:[[ESJsonFormatSetting defaultSetting] superClassName_QM]];
+    [self.labelSuperClassName_QM setStringValue:[[ESJsonFormatSetting defaultSetting] superClassName_QM]];
+    
     if (![ESUtils isXcode7AndLater]) {
         self.btnGeneric.enabled = NO;
     }
@@ -53,7 +63,20 @@
     NSURL* url = [[ NSURL alloc ] initWithString :@"http://t.cn/RLarUfg"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
+- (IBAction)touchSwitchSaveSuperClass_QM:(NSButton *)sender {
+    
+    sender.state = 1;
+    
+}
 
+- (IBAction)touchSaveSuperClass_QM:(id)sender {
+    
+    [[ESJsonFormatSetting defaultSetting] setSuperClassName_QM:[self.tfSuperClassName_QM stringValue]];
+    
+    
+    [self.labelSuperClassName_QM setStringValue:[[ESJsonFormatSetting defaultSetting] superClassName_QM]];
+    
+}
 
 
 @end
